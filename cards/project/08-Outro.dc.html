@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정리 · 팔로우</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&amp;family=Gothic+A1:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #16130F; font-family: 'Gothic A1', 'Apple SD Gothic Neo', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #FF5D2E; } a:hover { color: #FF8A66; }
+</style>
+</helmet>
+<div style="width: 1080px; height: 1350px; box-sizing: border-box; padding: 72px; display: flex; flex-direction: column; gap: 36px; background: #16130F; color: #F2ECE2;">
+
+  <div style="display: flex; align-items: center; gap: 14px;">
+    <span style="width: 14px; height: 14px; background: {{accent}};"></span>
+    <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.18em;">RUNJUHO</span>
+    <span style="flex-grow: 1;"></span>
+    <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.14em; color: #9A9187;">08 / 08</span>
+  </div>
+
+  <h2 style="margin: 0; font-family: 'Black Han Sans', 'Gothic A1', sans-serif; font-size: 82px; line-height: 1.02; letter-spacing: -0.02em;">한 장으로 정리</h2>
+
+  <div style="display: flex; flex-direction: column; gap: 18px;">
+
+    <div style="display: flex; gap: 22px; align-items: baseline; background: rgba(242,236,226,0.06); padding: 26px 30px;">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 118px; flex-shrink: 0;">모델</span>
+      <span style="font-size: 32px; font-weight: 900;">아디오스 프로 5 ‘솔라 터보’</span>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: baseline; background: rgba(242,236,226,0.06); padding: 26px 30px;">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 118px; flex-shrink: 0;">출시</span>
+      <span style="font-size: 32px; font-weight: 900;">2026년 9월 22일</span>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: baseline; background: rgba(242,236,226,0.06); padding: 26px 30px;">
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 118px; flex-shrink: 0;">가격</span>
+      <span style="font-size: 32px; font-weight: 900;">$275 · 국내가 미공개</span>
+    </div>
+
+  </div>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
+    <p style="margin: 0; font-size: 36px; font-weight: 900; line-height: 1.45;">저장해두고 발매일에 다시 꺼내 보세요.<br>국내 발매 정보 뜨면 여기에 바로 올리겠습니다.</p>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <span style="background: {{accent}}; color: #16130F; font-family: 'Black Han Sans', 'Gothic A1', sans-serif; font-size: 44px; padding: 14px 28px;">@runjuho</span>
+      <span style="font-size: 25px; font-weight: 700; color: #9A9187;">러닝 장비 소식은 여기서</span>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(242,236,226,0.16); padding-top: 24px;">
+    <p style="margin: 0; font-size: 20px; font-weight: 500; line-height: 1.6; color: #9A9187;">출처 · 세계육상연맹(World Athletics) 공인 신발 리스트, 해외 리테일러 공개 발매 정보 기준.<br>국내 공식 발표 내용과 다를 수 있습니다.</p>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF5D2E","options":["#FF5D2E","#E03E2F","#C9F24D","#F2ECE2"]},"$preview":{"width":1080,"height":1350}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#FF5D2E' };
+  }
+}
+</script>
+</body>
+</html>

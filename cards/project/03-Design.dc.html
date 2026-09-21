@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>디자인</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&amp;family=Gothic+A1:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #16130F; font-family: 'Gothic A1', 'Apple SD Gothic Neo', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #FF5D2E; } a:hover { color: #FF8A66; }
+</style>
+</helmet>
+<div style="width: 1080px; height: 1350px; box-sizing: border-box; padding: 72px; display: flex; flex-direction: column; gap: 36px; background: #16130F; color: #F2ECE2;">
+
+  <div style="display: flex; align-items: center; gap: 14px;">
+    <span style="width: 14px; height: 14px; background: {{accent}};"></span>
+    <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.18em;">RUNJUHO</span>
+    <span style="flex-grow: 1;"></span>
+    <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.14em; color: #9A9187;">03 / 08</span>
+  </div>
+
+  <h2 style="margin: 0; font-family: 'Black Han Sans', 'Gothic A1', sans-serif; font-size: 82px; line-height: 1.02; letter-spacing: -0.02em;">디자인</h2>
+
+  <div style="flex-grow: 1; border: 2px dashed rgba(242,236,226,0.28); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: rgba(242,236,226,0.04);">
+    <span style="font-size: 26px; font-weight: 700; color: #9A9187;">측면 컷 이미지 자리</span>
+    <span style="font-size: 19px; font-weight: 500; color: #9A9187;">아웃솔·힐 컷을 2장으로 나눠 써도 좋습니다</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 22px;">
+
+    <div style="display: flex; gap: 24px; align-items: baseline; border-top: 1px solid rgba(242,236,226,0.16); padding-top: 22px;">
+      <span style="font-size: 23px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 132px;">컬러</span>
+      <span style="font-size: 32px; font-weight: 900; line-height: 1.35;">솔라 터보 / 코어 블랙 / 루시드 레드</span>
+    </div>
+
+    <div style="display: flex; gap: 24px; align-items: baseline; border-top: 1px solid rgba(242,236,226,0.16); padding-top: 22px;">
+      <span style="font-size: 23px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 132px;">어퍼</span>
+      <span style="font-size: 32px; font-weight: 900; line-height: 1.35;">셀러메쉬 3.0<br><span style="font-size: 27px; font-weight: 500; color: #9A9187;">형광 핑크 바탕에 도트 패턴 3스트라이프</span></span>
+    </div>
+
+    <div style="display: flex; gap: 24px; align-items: baseline; border-top: 1px solid rgba(242,236,226,0.16); padding-top: 22px;">
+      <span style="font-size: 23px; font-weight: 700; letter-spacing: 0.08em; color: #9A9187; min-width: 132px;">품번</span>
+      <span style="font-size: 32px; font-weight: 900; line-height: 1.35;">KI8294</span>
+    </div>
+
+  </div>
+
+  <div style="display: flex; align-items: center; border-top: 1px solid rgba(242,236,226,0.16); padding-top: 24px;">
+    <span style="font-size: 21px; font-weight: 700; color: #9A9187;">@runjuho</span>
+    <span style="flex-grow: 1;"></span>
+    <span style="font-size: 21px; font-weight: 500; color: #9A9187;">첫 컬러웨이 기준, 추가 컬러는 순차 공개</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF5D2E","options":["#FF5D2E","#E03E2F","#C9F24D","#F2ECE2"]},"$preview":{"width":1080,"height":1350}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#FF5D2E' };
+  }
+}
+</script>
+</body>
+</html>
