@@ -8,6 +8,7 @@
 
 - `cards/project/canvas.json` — 캔버스 인덱스 (아트보드 배치)
 - `cards/project/*.dc.html` — 카드 1장 = 파일 1개 (1080×1350, 4:5)
+- `cards/assets/*.png` — 카드에 들어간 제품 컷 (스크린샷에서 제품 영역만 잘라내고 배경을 카드 톤에 맞춤)
 - `cards/caption.md` — 업로드 캡션, 커버 문구 대안, 첫 댓글
 
 ### 톤앤매너 / 디자인 토큰
