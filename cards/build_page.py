@@ -18,10 +18,13 @@ CAP_HOOKS = section(CAPTION, '커버 문구 대안 (후킹)')
 CAP_REPLY = section(CAPTION, '첫 댓글용')
 
 
+TOTAL = 9
+
+
 def head(n):
     return (f'<div class="c-head"><span class="c-mark"></span>'
             f'<span class="c-brand">RUNJUHO</span><span class="c-sp"></span>'
-            f'<span class="c-num">0{n} / 08</span></div>')
+            f'<span class="c-num">0{n} / 0{TOTAL}</span></div>')
 
 
 def foot(note):
@@ -54,7 +57,7 @@ CARDS = [
 <div class="grow stack-28 spread">
   <div class="row num-row"><span class="num">01</span><span class="col"><span class="lbl">모델</span><span class="big-val">아디제로 아디오스 프로 5<br>‘솔라 터보’</span></span></div>
   <div class="row num-row"><span class="num">02</span><span class="col"><span class="lbl">출시일</span><span class="big-val">2026년 9월 22일</span></span></div>
-  <div class="row num-row"><span class="num">03</span><span class="col"><span class="lbl">가격</span><span class="big-val">$275<span class="sub-inline"> · 국내는 공식 스토어 판매 중</span></span></span></div>
+  <div class="row num-row"><span class="num">03</span><span class="col"><span class="lbl">가격</span><span class="big-val">339,000원<span class="sub-inline"> · 현재 품절</span></span></span></div>
 </div>
 <div class="quote"><p>한 줄로 줄이면, 프로4의 상징이던 카본 구조 자체를 갈아치운 5세대입니다.</p></div>
 {foot('디테일은 다음 장부터')}'''),
@@ -108,14 +111,14 @@ CARDS = [
 <h2 class="c-title">가격과 출시일</h2>
 <div class="tiles two">
   <div class="tile hero"><span class="lbl on">출시일</span><span class="stat">9.22</span><span class="tile-sub on">2026년 · 화요일</span></div>
-  <div class="tile"><span class="lbl">해외 가격</span><span class="stat">$275</span><span class="tile-sub">프로4는 $250이었습니다</span></div>
+  <div class="tile"><span class="lbl">국내 정가</span><span class="stat" style="font-size: 58px;">339,000<span class="unit">원</span></span><span class="tile-sub">해외는 $275 · 프로4는 $250</span></div>
 </div>
 <div class="grow stack-22">
-  {row('국내 발매', '아디다스 공식 스토어 판매 중', '원화 정가는 adidas.co.kr에서 실시간 확인하세요', cls='row wide')}
+  {row('재고', '공식 스토어 현재 품절', '아디다스는 재입고가 비교적 빠른 편입니다', cls='row wide')}
   {row('대회 착용', '세계육상연맹 공인 리스트 등재 완료', '모델 코드 ONN61 / K10940', cls='row wide')}
   {row('실전 데뷔', '9월 27일 베를린 마라톤', '엘리트 선수 발에서 먼저 확인될 가능성이 큽니다', cls='row wide')}
 </div>
-{foot('adidas 공식 보도자료 · 원화 정가 확인되면 업데이트합니다')}'''),
+{foot('adidas 공식 보도자료 · 국내 정가·재고 기준 (2026.9.23)')}'''),
 
     ('살까 말까', f'''{head(7)}
 <div class="stack-12">
@@ -131,15 +134,33 @@ CARDS = [
 <div class="quote"><p class="lg">카본화가 기록을 만들어주지는 않습니다.<br>부상 없이 꾸준히 달리는 게 먼저입니다.</p></div>
 {foot('궁금한 건 댓글로')}'''),
 
-    ('정리·CTA', f'''{head(8)}
+    ('바이어 가이드', f'''{head(8)}
+<div class="stack-12">
+  <span class="over">제 개인 코멘트입니다</span>
+  <h2 class="c-title" style="font-size: 76px;">바이어 가이드</h2>
+</div>
+<div class="quote" style="background: var(--ember); color: #FFFFFF;">
+  <span style="display: block; font-size: 22px; font-weight: 900; letter-spacing: .04em; margin-bottom: 8px;">결론부터</span>
+  <p style="color: #FFFFFF; font-size: 34px; font-weight: 900;">프로4가 아직 현역이고 마일리지 괜찮으면, 지금은 구매 비추천입니다.</p>
+</div>
+<div class="grow stack-22">
+  <div class="row num-row"><span class="num sm">01</span><span class="col"><span class="head-s" style="font-size: 29px;">업그레이드가 아니라 새 신발입니다</span><span class="body-s" style="font-size: 23px;">드롭도, 미드솔도, 카본 구조도 다 바뀌었습니다. 해외 착용 리뷰들도 프로4 연장선이 아니라 별개 모델처럼 다룹니다. 적응 기간이 필요하다는 뜻입니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">02</span><span class="col"><span class="head-s" style="font-size: 29px;">안감이 미끄럽다는 초기 지적이 있습니다</span><span class="body-s" style="font-size: 23px;">해외 초기 착용 리뷰 여러 곳에서 삭 라이너가 미끄러워 장거리에서 마찰이 생겼다는 언급이 나왔습니다. 치명적 하자는 아니지만 신경 쓰이는 부분입니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">03</span><span class="col"><span class="head-s" style="font-size: 29px;">짧은 레이스엔 스냅감이 덜합니다</span><span class="body-s" style="font-size: 23px;">미드풋 강성재가 빠지면서 10km 이하 스피드 구간의 반응성이 떨어진다는 평이 있습니다. 마라톤 쪽으로 더 치우친 셋업입니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">04</span><span class="col"><span class="head-s" style="font-size: 29px;">사고 싶어도 지금은 품절입니다</span><span class="body-s" style="font-size: 23px;">국내 정가 339,000원인데 현재 품절 상태입니다. 아디다스는 재입고가 비교적 빠른 편이니 급할 필요는 없습니다.</span></span></div>
+</div>
+<div class="quote"><p>반대로 프로4의 좁은 힐, 물렁한 내구성이 불만이셨다면 프로5가 답일 수 있습니다. 그게 아니라 잘 신고 계신 거면, 지금 급하게 갈아탈 이유는 없습니다.</p></div>
+{foot('해외 착용 리뷰 매체 종합 · 커뮤니티 후기는 아직 초기 단계')}'''),
+
+    ('정리·CTA', f'''{head(9)}
 <h2 class="c-title">한 장으로 정리</h2>
 <div class="stack-18">
   <div class="slab"><span class="lbl">모델</span><span class="slab-v">아디오스 프로 5 ‘솔라 터보’</span></div>
   <div class="slab"><span class="lbl">출시</span><span class="slab-v">2026년 9월 22일</span></div>
-  <div class="slab"><span class="lbl">가격</span><span class="slab-v">$275 · 국내 공식 스토어 판매 중</span></div>
+  <div class="slab"><span class="lbl">가격</span><span class="slab-v">339,000원 · 현재 품절(재입고 예정)</span></div>
 </div>
 <div class="grow center stack-22">
-  <p class="cta">국내 아디다스 공식 스토어에서 이미 판매 중입니다.<br>원화 정가는 adidas.co.kr에서 직접 확인하세요.</p>
+  <p class="cta">국내 정가 339,000원, 지금은 품절입니다.<br>아디다스는 재입고가 빠른 편이니 조금만 기다려보세요.</p>
   <div class="handle-row"><span class="handle-pill">@runjuho</span><span class="eyebrow">러닝 장비 소식은 여기서</span></div>
 </div>
 <div class="src"><p>출처 · adidas 공식 보도자료(국내 배포), 세계육상연맹(World Athletics) 공인 리스트.<br>원화 정가는 매장·시점마다 다를 수 있어 공식 스토어 표기를 우선합니다.</p></div>'''),
@@ -154,14 +175,13 @@ slots = '\n'.join(
 </figure>''' for i, (name, html) in enumerate(CARDS))
 
 page = f'''<title>아디오스 프로 5 카드뉴스</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700;900&display=swap">
 <style>
 :root {{
-  --ink: #16130F; --paper: #F2ECE2; --muted: #9A9187; --ember: #FF5D2E;
-  --line: rgba(242,236,226,.16); --fill: rgba(242,236,226,.06);
-  --shell: #0E0C0A; --shell-2: #1D1916; --shell-line: rgba(242,236,226,.12);
-  --sans: 'Gothic A1', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  --display: 'Black Han Sans', 'Gothic A1', sans-serif;
+  --ink: #000000; --paper: #F5F5F7; --muted: #86868B; --ember: #0A84FF; --ember-hi: #409CFF;
+  --line: rgba(245,245,247,.14); --fill: rgba(255,255,255,.06);
+  --shell: #000000; --shell-2: #1C1C1E; --shell-line: rgba(245,245,247,.14);
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Apple SD Gothic Neo', sans-serif;
 }}
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; background: var(--shell); color: var(--paper); font-family: var(--sans); }}
@@ -173,19 +193,19 @@ body {{ margin: 0; background: var(--shell); color: var(--paper); font-family: v
 .bar .meta {{ margin: 6px 0 0; font-size: 14px; font-weight: 500; color: var(--muted); }}
 .bar .acts {{ margin-left: auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }}
 .btn {{ font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 12px 20px; min-height: 44px;
-  border: 1px solid var(--ember); border-radius: 2px; background: var(--ember); color: #16130F; cursor: pointer; }}
-.btn:hover {{ background: #FF7448; border-color: #FF7448; }}
+  border: 1px solid var(--ember); border-radius: 12px; background: var(--ember); color: #FFFFFF; cursor: pointer; }}
+.btn:hover {{ background: var(--ember-hi); border-color: var(--ember-hi); }}
 .btn.ghost {{ background: transparent; color: var(--paper); border-color: var(--shell-line); }}
 .btn.ghost:hover {{ border-color: var(--ember); color: var(--ember); background: transparent; }}
 .btn:disabled {{ opacity: .5; cursor: progress; }}
 .btn:focus-visible, textarea:focus-visible {{ outline: 2px solid var(--ember); outline-offset: 2px; }}
 .status {{ font-size: 14px; font-weight: 700; color: var(--muted); min-height: 20px; }}
-.status.warn {{ color: #FFB39A; }}
+.status.warn {{ color: #FF9F0A; }}
 
 /* ---- previews ---- */
 .grid {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 20px; margin-top: 30px; }}
 .slot-wrap {{ margin: 0; }}
-.slot {{ position: relative; width: 100%; aspect-ratio: 1080 / 1350; overflow: hidden; background: var(--ink); border: 1px solid var(--shell-line); }}
+.slot {{ position: relative; width: 100%; aspect-ratio: 1080 / 1350; overflow: hidden; background: var(--ink); border: 1px solid var(--shell-line); border-radius: 20px; }}
 .stage {{ position: absolute; top: 0; left: 0; transform-origin: top left; }}
 .cap {{ display: flex; align-items: center; gap: 10px; padding-top: 10px; }}
 .cap-n {{ font-family: var(--display); font-size: 15px; color: var(--ember); }}
@@ -194,11 +214,11 @@ body {{ margin: 0; background: var(--shell); color: var(--paper); font-family: v
 
 /* ---- caption panel ---- */
 .copy {{ margin-top: 48px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; align-items: start; }}
-.box {{ background: var(--shell-2); border: 1px solid var(--shell-line); padding: 22px; display: flex; flex-direction: column; gap: 14px; }}
+.box {{ background: var(--shell-2); border: 1px solid var(--shell-line); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }}
 .box h2 {{ margin: 0; font-size: 17px; font-weight: 900; letter-spacing: .02em; }}
 .box .hint {{ margin: 0; font-size: 13px; font-weight: 500; color: var(--muted); }}
-textarea {{ width: 100%; background: #14110E; color: var(--paper); border: 1px solid var(--shell-line);
-  font-family: var(--sans); font-size: 14px; line-height: 1.65; padding: 14px; resize: vertical; }}
+textarea {{ width: 100%; background: #000000; color: var(--paper); border: 1px solid var(--shell-line);
+  border-radius: 12px; font-family: var(--sans); font-size: 14px; line-height: 1.65; padding: 14px; resize: vertical; }}
 textarea.main {{ min-height: 340px; }}
 textarea.side {{ min-height: 150px; }}
 
@@ -212,7 +232,7 @@ textarea.side {{ min-height: 150px; }}
 .card .grow {{ flex-grow: 1; }}
 .card .c-sp {{ flex-grow: 1; }}
 .c-head {{ display: flex; align-items: center; gap: 14px; }}
-.c-mark {{ width: 14px; height: 14px; background: var(--ember); }}
+.c-mark {{ width: 14px; height: 14px; border-radius: 50%; background: var(--ember); }}
 .c-brand {{ font-size: 20px; font-weight: 700; letter-spacing: .18em; }}
 .c-num {{ font-size: 20px; font-weight: 700; letter-spacing: .14em; color: var(--muted); }}
 .c-title {{ margin: 0; font-family: var(--display); font-size: 82px; line-height: 1.02; letter-spacing: -.02em; }}
@@ -221,7 +241,7 @@ textarea.side {{ min-height: 150px; }}
 .c-handle {{ font-size: 21px; font-weight: 700; color: var(--muted); }}
 .c-note {{ font-size: 21px; font-weight: 500; color: var(--muted); margin-left: auto; }}
 
-.panel {{ background: var(--paper); overflow: hidden; display: flex; align-items: center; justify-content: center; }}
+.panel {{ background: var(--paper); border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; }}
 .panel img.fill {{ width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }}
 .panel.pair {{ gap: 0; }}
 .pair-l, .pair-r {{ height: 100%; display: flex; align-items: center; justify-content: center; padding: 18px; }}
@@ -236,7 +256,7 @@ textarea.side {{ min-height: 150px; }}
 .spread {{ justify-content: space-between; }}
 
 .eyebrow-row {{ display: flex; align-items: center; gap: 14px; }}
-.pill {{ background: var(--ember); color: var(--ink); font-size: 24px; font-weight: 900; padding: 8px 18px; }}
+.pill {{ background: var(--ember); color: #FFFFFF; border-radius: 999px; font-size: 24px; font-weight: 900; padding: 8px 18px; }}
 .eyebrow {{ font-size: 24px; font-weight: 700; color: var(--muted); }}
 .kicker {{ font-size: 38px; font-weight: 900; color: var(--ember); }}
 .lede {{ margin: 0; font-size: 27px; font-weight: 500; line-height: 1.5; color: var(--muted); }}
@@ -247,7 +267,7 @@ textarea.side {{ min-height: 150px; }}
 .row .col {{ display: flex; flex-direction: column; gap: 8px; }}
 .num {{ font-family: var(--display); font-size: 40px; color: var(--ember); min-width: 62px; flex-shrink: 0; }}
 .num.sm {{ font-size: 32px; min-width: 52px; }}
-.dot {{ width: 12px; height: 12px; background: var(--ember); margin-top: 16px; flex-shrink: 0; }}
+.dot {{ width: 12px; height: 12px; border-radius: 50%; background: var(--ember); margin-top: 16px; flex-shrink: 0; }}
 .lbl {{ font-size: 22px; font-weight: 700; letter-spacing: .08em; color: var(--muted); min-width: 132px; flex-shrink: 0; }}
 .row.wide .lbl {{ min-width: 150px; }}
 .tile .lbl, .row.num-row .lbl, .slab .lbl {{ min-width: 0; }}
@@ -263,24 +283,24 @@ textarea.side {{ min-height: 150px; }}
 .row.num-row .body-s {{ font-size: 25px; }}
 
 .tiles {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }}
-.tile {{ background: var(--fill); padding: 30px 32px; display: flex; flex-direction: column; gap: 10px; }}
+.tile {{ background: var(--fill); border-radius: 20px; padding: 30px 32px; display: flex; flex-direction: column; gap: 10px; }}
 .tiles.two .tile {{ padding: 34px 32px; }}
-.tile.hero {{ background: var(--ember); color: var(--ink); }}
-.tile .lbl.on {{ color: var(--ink); font-weight: 900; }}
+.tile.hero {{ background: var(--ember); color: #FFFFFF; }}
+.tile .lbl.on {{ color: #FFFFFF; font-weight: 900; }}
 .stat {{ font-family: var(--display); font-size: 66px; line-height: 1; }}
 .tiles.two .stat {{ font-size: 72px; }}
 .unit {{ font-family: var(--sans); font-size: 30px; font-weight: 700; color: var(--muted); }}
 .tile-sub {{ font-size: 25px; font-weight: 700; color: var(--muted); }}
-.tile-sub.on {{ color: var(--ink); }}
+.tile-sub.on {{ color: #FFFFFF; }}
 
-.quote {{ background: var(--fill); border-left: 4px solid var(--ember); padding: 28px 32px; }}
+.quote {{ background: var(--fill); border-radius: 20px; padding: 28px 32px; }}
 .quote p {{ margin: 0; font-size: 28px; font-weight: 700; line-height: 1.5; }}
 .quote p.lg {{ font-size: 30px; font-weight: 900; line-height: 1.45; }}
-.slab {{ display: flex; gap: 22px; align-items: baseline; background: var(--fill); padding: 26px 30px; }}
+.slab {{ display: flex; gap: 22px; align-items: baseline; background: var(--fill); border-radius: 16px; padding: 26px 30px; }}
 .slab-v {{ font-size: 32px; font-weight: 900; }}
 .cta {{ margin: 0; font-size: 36px; font-weight: 900; line-height: 1.45; }}
 .handle-row {{ display: flex; align-items: center; gap: 18px; }}
-.handle-pill {{ background: var(--ember); color: var(--ink); font-family: var(--display); font-size: 44px; padding: 14px 28px; }}
+.handle-pill {{ background: var(--ember); color: #FFFFFF; border-radius: 999px; font-family: var(--display); font-size: 44px; padding: 14px 28px; }}
 .src {{ border-top: 1px solid var(--line); padding-top: 24px; }}
 .src p {{ margin: 0; font-size: 20px; font-weight: 500; line-height: 1.6; color: var(--muted); }}
 </style>
@@ -289,11 +309,11 @@ textarea.side {{ min-height: 150px; }}
   <header class="bar">
     <div>
       <h1>아디오스 프로 5 오피셜</h1>
-      <p class="meta">1080 × 1350 · 8장 · 런주호 카드 캐러셀</p>
+      <p class="meta">1080 × 1350 · 9장 · 런주호 카드 캐러셀</p>
     </div>
     <div class="acts">
       <span class="status" id="status" role="status"></span>
-      <button type="button" class="btn" id="zip">카드 8장 ZIP 다운로드</button>
+      <button type="button" class="btn" id="zip">카드 9장 ZIP 다운로드</button>
     </div>
   </header>
 
@@ -352,7 +372,7 @@ textarea.side {{ min-height: 150px; }}
   function shoot(id) {{
     var card = document.getElementById(id);
     return html2canvas(card, {{
-      backgroundColor: '#16130F', scale: 1, logging: false, imageTimeout: 0,
+      backgroundColor: '#000000', scale: 1, logging: false, imageTimeout: 0,
       width: 1080, height: 1350, windowWidth: 1080, windowHeight: 1350, scrollX: 0, scrollY: 0,
       onclone: function (doc) {{
         var clone = doc.getElementById(id);
@@ -400,12 +420,12 @@ textarea.side {{ min-height: 150px; }}
 
   document.getElementById('zip').addEventListener('click', function () {{
     var btn = this, ids = [], i;
-    for (i = 1; i <= 8; i++) ids.push(i);
+    for (i = 1; i <= 9; i++) ids.push(i);
     btn.disabled = true;
     var zip = new JSZip();
     ids.reduce(function (chain, n) {{
       return chain.then(function () {{
-        say('카드 ' + n + '/8 굽는 중…');
+        say('카드 ' + n + '/9 굽는 중…');
         return shoot('card' + n).then(toBlob).then(function (blob) {{
           zip.file('adios-pro-5-' + (n < 10 ? '0' + n : n) + '.png', blob);
         }});
@@ -416,7 +436,7 @@ textarea.side {{ min-height: 150px; }}
         return zip.generateAsync({{ type: 'blob' }});
       }})
       .then(function (blob) {{ return save('adios-pro-5-cards.zip', blob); }})
-      .then(function () {{ say('8장 저장했습니다.'); }})
+      .then(function () {{ say('9장 저장했습니다.'); }})
       .catch(fail)
       .then(function () {{ btn.disabled = false; }});
   }});
