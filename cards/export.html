@@ -10,6 +10,8 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--shell); color: var(--paper); font-family: var(--sans); }
 .wrap { max-width: 1180px; margin: 0 auto; padding-block: 28px 64px; padding-left: 20px; padding-right: 20px; }
+.tip { background: var(--fill); border-radius: 16px; padding: 16px 18px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.tip b { color: var(--paper); }
 
 /* ---- toolbar ---- */
 .bar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 20px; padding-bottom: 20px; border-bottom: 1px solid var(--shell-line); }
@@ -130,6 +132,7 @@ textarea.side { min-height: 150px; }
 </style>
 
 <div class="wrap">
+  <div class="tip">📱 <b>전체 저장</b>을 누르고 공유 시트에서 '이미지 저장'을 고르면 9장이 통째로 사진 앱에 들어갑니다.<br>한 장만 받으실 땐 그 카드의 'PNG 저장'을 누르거나 카드를 길게 누르세요. 꼭 <b>사파리(카톡 인앱 브라우저 아님)</b>에서 열어주세요.</div>
   <header class="bar">
     <div>
       <h1>아디오스 프로 5 오피셜</h1>
@@ -137,7 +140,7 @@ textarea.side { min-height: 150px; }
     </div>
     <div class="acts">
       <span class="status" id="status" role="status"></span>
-      <button type="button" class="btn" id="saveAll">카드 9장 한번에 저장</button>
+      <button type="button" class="btn" id="saveAll">전체 저장</button>
     </div>
   </header>
 
