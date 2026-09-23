@@ -432,10 +432,41 @@ textarea.side { min-height: 150px; }
 
   var NAMES = ["01-커버", "02-3줄 요약", "03-디자인", "04-스펙", "05-달라진 점", "06-가격·출시일", "07-살까 말까", "08-바이어 가이드", "09-정리·CTA"];
 
-  document.getElementById('saveAll').addEventListener('click', function () {
-    var btn = this, total = NAMES.length, stopped = false;
-    btn.disabled = true;
-    NAMES.reduce(function (chain, name, idx) {
+  /* 카드 9장을 전부 캡처해 File[] 로 모은다. */
+  function shootAllFiles() {
+    var files = [];
+    return NAMES.reduce(function (chain, name, idx) {
+      return chain.then(function () {
+        var n = idx + 1;
+        say('카드 ' + n + '/' + NAMES.length + ' 준비 중…');
+        return shoot('card' + n).then(toBlob).then(function (blob) {
+          files.push(new File([blob], 'adios-pro-5-' + name + '.png', { type: 'image/png' }));
+        });
+      });
+    }, Promise.resolve()).then(function () { return files; });
+  }
+
+  /* 1) 먼저 네이티브 공유 시트로 9장을 한번에 넘겨본다 — 지원되면
+     카톡/사파리가 "이미지 9개 저장" 같은 일괄 저장 옵션을 보여준다.
+     iframe 권한 정책이 막으면 조용히 false 를 반환하고 2)로 넘어간다. */
+  function tryShareAll() {
+    if (!(navigator.share && navigator.canShare)) return Promise.resolve(false);
+    return shootAllFiles().then(function (files) {
+      if (!files.length || !navigator.canShare({ files: files })) return false;
+      say('공유 시트에서 "이미지 ' + files.length + '개 저장"을 선택하세요.');
+      return navigator.share({ files: files, title: '아디오스 프로 5 카드뉴스' })
+        .then(function () { say('공유를 완료했습니다.'); return true; })
+        .catch(function (e) {
+          if (e && e.name === 'AbortError') { say('공유를 취소했습니다.'); return true; }
+          return false; /* 권한 거부·미지원: 2)로 폴백 */
+        });
+    }).catch(function () { return false; });
+  }
+
+  /* 2) 폴백 — 한 장씩 저장 확인을 순서대로 띄운다 (ZIP 없이 개별 저장). */
+  function sequentialSaveAll() {
+    var total = NAMES.length, stopped = false;
+    return NAMES.reduce(function (chain, name, idx) {
       return chain.then(function () {
         if (stopped) return;
         var n = idx + 1;
@@ -448,8 +479,14 @@ textarea.side { min-height: 150px; }
           throw err;
         });
       });
-    }, Promise.resolve())
-      .then(function () { if (!stopped) say(total + '장 모두 저장했습니다.'); })
+    }, Promise.resolve()).then(function () { if (!stopped) say(total + '장 모두 저장했습니다.'); });
+  }
+
+  document.getElementById('saveAll').addEventListener('click', function () {
+    var btn = this;
+    btn.disabled = true;
+    tryShareAll()
+      .then(function (shared) { return shared ? null : sequentialSaveAll(); })
       .catch(fail)
       .then(function () { btn.disabled = false; });
   });
