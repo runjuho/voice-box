@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """cards/export.html 를 만든다. 카드 8장 마크업 + 이미지 data URI + 캡션을 한 파일로 묶는다."""
-import json, pathlib
+import base64, json, pathlib
 
 ROOT = pathlib.Path(__file__).parent
-IMG = json.load(open('/tmp/claude-0/imgs.json'))
+IMG = {k: 'data:image/jpeg;base64,' + base64.b64encode((ROOT / 'assets' / f'shoe-{k}.jpg').read_bytes()).decode()
+       for k in ('front', 'side', 'top')}
+H2C = (ROOT / 'vendor' / 'html2canvas.min.js').read_text().replace('</script', '<\\/script')
 CAPTION = (ROOT / 'caption.md').read_text()
 
 
@@ -141,15 +143,15 @@ CARDS = [
 </div>
 <div class="quote" style="background: var(--ember); color: #FFFFFF;">
   <span style="display: block; font-size: 22px; font-weight: 900; letter-spacing: .04em; margin-bottom: 8px;">결론부터</span>
-  <p style="color: #FFFFFF; font-size: 34px; font-weight: 900;">프로4가 아직 현역이고 마일리지 괜찮으면, 지금은 구매 비추천입니다.</p>
+  <p style="color: #FFFFFF; font-size: 31px; font-weight: 900;">프로4 현역·마일리지 넉넉하면, 지금은 구매 비추천</p>
 </div>
 <div class="grow stack-22">
-  <div class="row num-row"><span class="num sm">01</span><span class="col"><span class="head-s" style="font-size: 29px;">업그레이드가 아니라 새 신발입니다</span><span class="body-s" style="font-size: 23px;">드롭도, 미드솔도, 카본 구조도 다 바뀌었습니다. 해외 착용 리뷰들도 프로4 연장선이 아니라 별개 모델처럼 다룹니다. 적응 기간이 필요하다는 뜻입니다.</span></span></div>
-  <div class="row num-row"><span class="num sm">02</span><span class="col"><span class="head-s" style="font-size: 29px;">안감이 미끄럽다는 초기 지적이 있습니다</span><span class="body-s" style="font-size: 23px;">해외 초기 착용 리뷰 여러 곳에서 삭 라이너가 미끄러워 장거리에서 마찰이 생겼다는 언급이 나왔습니다. 치명적 하자는 아니지만 신경 쓰이는 부분입니다.</span></span></div>
-  <div class="row num-row"><span class="num sm">03</span><span class="col"><span class="head-s" style="font-size: 29px;">짧은 레이스엔 스냅감이 덜합니다</span><span class="body-s" style="font-size: 23px;">미드풋 강성재가 빠지면서 10km 이하 스피드 구간의 반응성이 떨어진다는 평이 있습니다. 마라톤 쪽으로 더 치우친 셋업입니다.</span></span></div>
-  <div class="row num-row"><span class="num sm">04</span><span class="col"><span class="head-s" style="font-size: 29px;">사고 싶어도 지금은 품절입니다</span><span class="body-s" style="font-size: 23px;">국내 정가 339,000원인데 현재 품절 상태입니다. 아디다스는 재입고가 비교적 빠른 편이니 급할 필요는 없습니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">01</span><span class="col"><span class="head-s" style="font-size: 29px;">업그레이드가 아니라 새 신발입니다</span><span class="body-s" style="font-size: 23px;">드롭·미드솔·카본 구조가 다 바뀌어 적응 기간이 필요합니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">02</span><span class="col"><span class="head-s" style="font-size: 29px;">안감이 미끄럽다는 초기 지적이 있습니다</span><span class="body-s" style="font-size: 23px;">해외 초기 리뷰에서 장거리 안감 마찰 언급이 나왔습니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">03</span><span class="col"><span class="head-s" style="font-size: 29px;">짧은 레이스엔 스냅감이 덜합니다</span><span class="body-s" style="font-size: 23px;">미드풋 강성재가 빠져 10km 이하 스피드에선 반응이 덜합니다.</span></span></div>
+  <div class="row num-row"><span class="num sm">04</span><span class="col"><span class="head-s" style="font-size: 29px;">사고 싶어도 지금은 품절입니다</span><span class="body-s" style="font-size: 23px;">정가 339,000원, 현재 품절입니다. 재입고는 빠른 편이라 급할 필요 없습니다.</span></span></div>
 </div>
-<div class="quote"><p>반대로 프로4의 좁은 힐, 물렁한 내구성이 불만이셨다면 프로5가 답일 수 있습니다. 그게 아니라 잘 신고 계신 거면, 지금 급하게 갈아탈 이유는 없습니다.</p></div>
+<div class="quote"><p>프로4의 좁은 힐·물렁한 내구성이 불만이었다면 프로5가 답일 수 있습니다. 아니라면 급하게 갈아탈 이유는 없습니다.</p></div>
 {foot('해외 착용 리뷰 매체 종합 · 커뮤니티 후기는 아직 초기 단계')}'''),
 
     ('정리·CTA', f'''{head(9)}
@@ -211,6 +213,7 @@ body {{ margin: 0; background: var(--shell); color: var(--paper); font-family: v
 .slot-wrap {{ margin: 0; }}
 .slot {{ position: relative; width: 100%; aspect-ratio: 1080 / 1350; overflow: hidden; background: var(--ink); border: 1px solid var(--shell-line); border-radius: 20px; }}
 .stage {{ position: absolute; top: 0; left: 0; transform-origin: top left; }}
+.shot {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; -webkit-touch-callout: default; }}
 .cap {{ display: flex; align-items: center; gap: 10px; padding-top: 10px; }}
 .cap-n {{ font-family: var(--display); font-size: 15px; color: var(--ember); }}
 .cap-t {{ font-size: 14px; font-weight: 700; color: var(--muted); flex-grow: 1; }}
@@ -318,7 +321,7 @@ textarea.side {{ min-height: 150px; }}
     </div>
     <div class="acts">
       <span class="status" id="status" role="status"></span>
-      <button type="button" class="btn" id="saveAll">전체 저장</button>
+      <button type="button" class="btn" id="saveAll" disabled>준비 중</button>
     </div>
   </header>
 
@@ -344,7 +347,7 @@ textarea.side {{ min-height: 150px; }}
   </section>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>{H2C}</script>
 <script>
 (function () {{
   var statusEl = document.getElementById('status');
@@ -394,94 +397,114 @@ textarea.side {{ min-height: 150px; }}
     return new Promise(function (res) {{ canvas.toBlob(res, 'image/png'); }});
   }}
 
-  function save(filename, data) {{
+  /* 파일 하나 저장: 클로드 downloads 권한이 있으면 그걸로, 없으면(독립 페이지) 일반 다운로드 링크로. */
+  function saveBlob(filename, blob) {{
     return dlReady.then(function () {{
-      if (!downloads) throw new Error('no-downloads');
-      return downloads.save({{ filename: filename, data: data }});
+      if (downloads) return downloads.save({{ filename: filename, data: blob }});
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
     }});
   }}
 
   function fail(err) {{
-    var code = err && (err.code || err.message);
-    if (code === 'declined') return say('저장을 취소했습니다.');
-    if (code === 'no-downloads' || code === 'unavailable' || code === 'not_granted') {{
-      return say('이 화면에서는 저장이 막혀 있습니다. 아티팩트를 새 창으로 열고 다시 눌러보세요.', true);
+    var code = err && (err.code || err.name || err.message);
+    if (code === 'declined' || code === 'AbortError') return say('저장을 취소했습니다.');
+    if (code === 'unavailable' || code === 'not_granted') {{
+      return say('이 화면에서는 저장이 막혀 있습니다. 카드를 길게 눌러 한 장씩 저장하세요.', true);
     }}
     say('저장하지 못했습니다: ' + (code || '알 수 없는 오류'), true);
   }}
 
-  document.querySelectorAll('.js-one').forEach(function (btn) {{
-    btn.addEventListener('click', function () {{
-      btn.disabled = true;
-      say('카드를 굽는 중…');
-      shoot(btn.dataset.card).then(toBlob).then(function (blob) {{
-        return save('adios-pro-5-' + btn.dataset.name + '.png', blob);
-      }}).then(function () {{ say('저장했습니다.'); }})
-        .catch(fail)
-        .then(function () {{ btn.disabled = false; }});
-    }});
-  }});
-
   var NAMES = {json.dumps(CARD_NAMES, ensure_ascii=False)};
+  var FILES = null;
+  var saveBtn = document.getElementById('saveAll');
 
-  /* 카드 9장을 전부 캡처해 File[] 로 모은다. */
-  function shootAllFiles() {{
+  function canShareFiles(files) {{
+    try {{ return !!(navigator.share && navigator.canShare && navigator.canShare({{ files: files }})); }}
+    catch (e) {{ return false; }}
+  }}
+
+  /* 페이지가 열리면 9장을 미리 PNG 로 만들어 둔다. 버튼을 누른 순간 곧바로
+     공유 시트를 띄워야 iOS 가 '사용자가 누른 동작'으로 인정하기 때문. */
+  function prepare() {{
+    saveBtn.disabled = true;
+    saveBtn.textContent = '준비 중';
     var files = [];
     return NAMES.reduce(function (chain, name, idx) {{
       return chain.then(function () {{
         var n = idx + 1;
         say('카드 ' + n + '/' + NAMES.length + ' 준비 중…');
         return shoot('card' + n).then(toBlob).then(function (blob) {{
-          files.push(new File([blob], 'adios-pro-5-' + name + '.png', {{ type: 'image/png' }}));
+          var file = new File([blob], 'adios-pro-5-' + name + '.png', {{ type: 'image/png' }});
+          files.push(file);
+          /* 미리보기 위에 실제 PNG 를 덮어서, 길게 누르면 '사진에 저장'이 뜨게 한다. */
+          var slot = document.getElementById('slot' + n);
+          var img = document.createElement('img');
+          img.className = 'shot';
+          img.alt = name;
+          img.src = URL.createObjectURL(file);
+          slot.appendChild(img);
         }});
       }});
-    }}, Promise.resolve()).then(function () {{ return files; }});
+    }}, Promise.resolve()).then(function () {{
+      FILES = files;
+      saveBtn.disabled = false;
+      saveBtn.textContent = '전체 저장';
+      say('');
+    }}).catch(function (e) {{
+      saveBtn.disabled = false;
+      saveBtn.textContent = '다시 준비';
+      say('이미지를 만들지 못했습니다. 버튼을 눌러 다시 시도하세요.', true);
+    }});
   }}
 
-  /* 1) 먼저 네이티브 공유 시트로 9장을 한번에 넘겨본다 — 지원되면
-     카톡/사파리가 "이미지 9개 저장" 같은 일괄 저장 옵션을 보여준다.
-     iframe 권한 정책이 막으면 조용히 false 를 반환하고 2)로 넘어간다. */
-  function tryShareAll() {{
-    if (!(navigator.share && navigator.canShare)) return Promise.resolve(false);
-    return shootAllFiles().then(function (files) {{
-      if (!files.length || !navigator.canShare({{ files: files }})) return false;
-      say('공유 시트에서 "이미지 ' + files.length + '개 저장"을 선택하세요.');
-      return navigator.share({{ files: files, title: '아디오스 프로 5 카드뉴스' }})
-        .then(function () {{ say('공유를 완료했습니다.'); return true; }})
-        .catch(function (e) {{
-          if (e && e.name === 'AbortError') {{ say('공유를 취소했습니다.'); return true; }}
-          return false; /* 권한 거부·미지원: 2)로 폴백 */
-        }});
-    }}).catch(function () {{ return false; }});
-  }}
-
-  /* 2) 폴백 — 한 장씩 저장 확인을 순서대로 띄운다 (ZIP 없이 개별 저장). */
-  function sequentialSaveAll() {{
-    var total = NAMES.length, stopped = false;
-    return NAMES.reduce(function (chain, name, idx) {{
+  /* 공유 시트가 안 되는 환경: 한 장씩 순서대로 저장. */
+  function saveEach(files) {{
+    return files.reduce(function (chain, file, idx) {{
       return chain.then(function () {{
-        if (stopped) return;
-        var n = idx + 1;
-        say('카드 ' + n + '/' + total + ' 저장 창을 여는 중…');
-        return shoot('card' + n).then(toBlob).then(function (blob) {{
-          return save('adios-pro-5-' + name + '.png', blob);
-        }}).catch(function (err) {{
-          var code = err && (err.code || err.message);
-          if (code === 'declined') {{ stopped = true; say(n + '번째에서 저장을 취소했습니다. (' + (n - 1) + '/' + total + '장 저장됨)'); return; }}
-          throw err;
-        }});
+        say('카드 ' + (idx + 1) + '/' + files.length + ' 저장 중…');
+        return saveBlob(file.name, file);
       }});
-    }}, Promise.resolve()).then(function () {{ if (!stopped) say(total + '장 모두 저장했습니다.'); }});
+    }}, Promise.resolve()).then(function () {{ say(files.length + '장 저장했습니다.'); }});
   }}
 
-  document.getElementById('saveAll').addEventListener('click', function () {{
-    var btn = this;
-    btn.disabled = true;
-    tryShareAll()
-      .then(function (shared) {{ return shared ? null : sequentialSaveAll(); }})
-      .catch(fail)
-      .then(function () {{ btn.disabled = false; }});
+  saveBtn.addEventListener('click', function () {{
+    if (!FILES) {{ prepare(); return; }}
+    /* 여기서 비동기 작업 없이 곧장 share 를 부른다. 텍스트·제목을 같이 넘기면
+       iOS 가 '이미지 N개 저장' 항목을 빼버리므로 파일만 넘긴다. */
+    if (canShareFiles(FILES)) {{
+      navigator.share({{ files: FILES }})
+        .then(function () {{ say('저장했습니다.'); }})
+        .catch(function (e) {{
+          if (e && e.name === 'AbortError') return say('취소했습니다.');
+          return saveEach(FILES).catch(fail);
+        }});
+    }} else {{
+      saveEach(FILES).catch(fail);
+    }}
   }});
+
+  document.querySelectorAll('.js-one').forEach(function (btn, idx) {{
+    btn.addEventListener('click', function () {{
+      if (!FILES) return say('아직 준비 중입니다. 잠시만 기다려주세요.');
+      var file = FILES[idx];
+      if (canShareFiles([file])) {{
+        navigator.share({{ files: [file] }}).catch(function (e) {{
+          if (e && e.name === 'AbortError') return;
+          return saveBlob(file.name, file).catch(fail);
+        }});
+      }} else {{
+        saveBlob(file.name, file).then(function () {{ say('저장했습니다.'); }}).catch(fail);
+      }}
+    }});
+  }});
+
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve())
+    .then(function () {{ setTimeout(prepare, 300); }});
 
   document.querySelectorAll('.js-copy').forEach(function (btn) {{
     btn.addEventListener('click', function () {{
@@ -509,4 +532,10 @@ textarea.side {{ min-height: 150px; }}
 '''
 
 (ROOT / 'export.html').write_text(page)
+# 클로드 아티팩트(iframe) 밖에서 여는 독립 페이지용 — 완전한 HTML 문서.
+# iframe 안에서는 공유 시트(여러 장 한번에 사진앱 저장)가 막히기 때문에 이 파일을 따로 호스팅한다.
+(ROOT / 'standalone.html').write_text(
+    '<!doctype html><html lang="ko"><head><meta charset="utf-8">'
+    '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+    '</head><body>' + page + '</body></html>')
 print('export.html', len(page), 'bytes')

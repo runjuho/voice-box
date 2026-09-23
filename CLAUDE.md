@@ -39,11 +39,35 @@
 
 인스타그램 카드 캐러셀 소스.
 
-- `cards/export.html` — **실제로 쓰는 결과물.** 카드 미리보기 + 9장 한번에 저장(ZIP 아님, 카드마다 개별 저장을 순서대로 진행) + 캡션 복사 페이지
-- `cards/build_page.py` — 위 export.html을 빌드하는 스크립트. 카드 내용을 고치면 이 파일을 고치고 `python3 cards/build_page.py`로 다시 빌드해서 export.html에 반영한다
-- `cards/caption.md` — 업로드 캡션, 커버 문구 대안, 첫 댓글 (build_page.py가 이 파일을 읽어 export.html에 넣는다)
+### 결과물 전달 방식 (2026-09-23 확정 — 이 방식만 쓴다)
+
+사용자는 **카톡으로 받은 링크를 카톡 인앱 브라우저에서 바로 열고, "전체 저장" 한 번 → 공유 시트 "이미지 N개 저장"으로 사진 앱에 한 번에 저장**한다. 트랜스제주 때부터 쓰던 방식.
+
+- **클로드 아티팩트(claude.ai/artifact) 링크로 보내지 않는다.** iframe 안이라 공유 시트(여러 장 저장)가 막힌다.
+- **jsdelivr 로 호스팅하지 않는다.** HTML 을 text/plain 으로 내보내 페이지로 안 열린다.
+- ZIP, 한 장씩 저장 확인창 방식도 원하지 않는다.
+- 호스팅은 Higgsfield `media_upload`(일반 파일) → `https://d2ol7oe51mr4n9.cloudfront.net/user_3EZ4QOXFWGtMb7s78DjLab81Lak/<id>.<ext>` 독립 페이지.
+- 카드는 **미리 JPG 로 뽑아 올리고**, 페이지엔 `<img>` 만 싣는다 (길게 눌러 한 장 저장도 되게). 폰에서 html2canvas 로 그리지 않는다.
+- 공유는 `navigator.share({ files })` — **파일만** 넘긴다. title·text 를 같이 넘기면 iOS 가 "이미지 N개 저장" 항목을 뺀다.
+
+순서:
+1. 카드 내용 수정 → `python3 cards/build_page.py` (standalone.html·export.html 생성)
+2. `node cards/render_cards.mjs` → `cards/out/card-XX.png`, 이어서 JPG(q92)로 변환
+3. `media_upload` files[] 로 JPG 업로드(PUT) → `media_confirm` → URL 들을 `cards/share_images.json` 에 저장
+4. `python3 cards/build_share.py` → `cards/share.html` (약 7KB)
+5. `media_upload`(text/html)로 share.html 업로드 → confirm → Higgsfield `sandbox_exec` 로 CloudFront URL 이 text/html·이미지 200 인지 확인 (이 세션 네트워크에선 CloudFront 가 막혀 있음)
+6. 카톡(PlayMCP 나에게 보내기)으로 share.html 링크 전송
+
+### 파일
+
+- `cards/build_page.py` — 카드 마크업 원본. `export.html`(아티팩트용, 참고)·`standalone.html`(렌더용 완전한 문서) 생성
+- `cards/render_cards.mjs` — standalone.html 을 열어 카드 9장을 1080×1350 PNG 로 저장
+- `cards/build_share.py`, `cards/share_images.json`, `cards/share.html` — 카톡 전달용 공유 페이지
+- `cards/out/card-XX.jpg` — 업로드한 카드 이미지 (PNG 는 커밋 안 함)
+- `cards/caption.md` — 업로드 캡션, 커버 문구 대안, 첫 댓글 (두 빌더가 모두 읽는다)
+- `cards/vendor/html2canvas.min.js` — 렌더용(인라인)
 - `cards/assets/*.png` — 카드에 들어간 제품 컷
-- `cards/project/*.dc.html`, `cards/project/canvas.json` — 캔버스 아티팩트 소스. **2026-09-23부로 캔버스는 더 안 씀** (사용자가 export.html 하나면 충분하다고 확인). 새 카드 작업은 `build_page.py`만 고치면 되고, 이 폴더는 굳이 같이 갱신하지 않아도 된다. 캔버스가 다시 필요해지면 그때 두 곳을 맞추면 된다.
+- `cards/project/*` — 예전 캔버스 소스. 더 안 씀.
 
 ### 콘텐츠 규칙
 
