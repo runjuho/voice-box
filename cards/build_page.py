@@ -166,6 +166,8 @@ CARDS = [
 <div class="src"><p>출처 · adidas 공식 보도자료(국내 배포), 세계육상연맹(World Athletics) 공인 리스트.<br>원화 정가는 매장·시점마다 다를 수 있어 공식 스토어 표기를 우선합니다.</p></div>'''),
 ]
 
+CARD_NAMES = [f'{i + 1:02d}-{name}' for i, (name, _html) in enumerate(CARDS)]
+
 slots = '\n'.join(
     f'''<figure class="slot-wrap">
   <div class="slot" id="slot{i+1}"><div class="stage"><div class="card" id="card{i+1}">{html}</div></div></div>
@@ -313,7 +315,7 @@ textarea.side {{ min-height: 150px; }}
     </div>
     <div class="acts">
       <span class="status" id="status" role="status"></span>
-      <button type="button" class="btn" id="zip">카드 9장 ZIP 다운로드</button>
+      <button type="button" class="btn" id="saveAll">카드 9장 한번에 저장</button>
     </div>
   </header>
 
@@ -340,7 +342,6 @@ textarea.side {{ min-height: 150px; }}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function () {{
   var statusEl = document.getElementById('status');
@@ -418,25 +419,26 @@ textarea.side {{ min-height: 150px; }}
     }});
   }});
 
-  document.getElementById('zip').addEventListener('click', function () {{
-    var btn = this, ids = [], i;
-    for (i = 1; i <= 9; i++) ids.push(i);
+  var NAMES = {json.dumps(CARD_NAMES, ensure_ascii=False)};
+
+  document.getElementById('saveAll').addEventListener('click', function () {{
+    var btn = this, total = NAMES.length, stopped = false;
     btn.disabled = true;
-    var zip = new JSZip();
-    ids.reduce(function (chain, n) {{
+    NAMES.reduce(function (chain, name, idx) {{
       return chain.then(function () {{
-        say('카드 ' + n + '/9 굽는 중…');
+        if (stopped) return;
+        var n = idx + 1;
+        say('카드 ' + n + '/' + total + ' 저장 창을 여는 중…');
         return shoot('card' + n).then(toBlob).then(function (blob) {{
-          zip.file('adios-pro-5-' + (n < 10 ? '0' + n : n) + '.png', blob);
+          return save('adios-pro-5-' + name + '.png', blob);
+        }}).catch(function (err) {{
+          var code = err && (err.code || err.message);
+          if (code === 'declined') {{ stopped = true; say(n + '번째에서 저장을 취소했습니다. (' + (n - 1) + '/' + total + '장 저장됨)'); return; }}
+          throw err;
         }});
       }});
     }}, Promise.resolve())
-      .then(function () {{
-        say('압축하는 중…');
-        return zip.generateAsync({{ type: 'blob' }});
-      }})
-      .then(function (blob) {{ return save('adios-pro-5-cards.zip', blob); }})
-      .then(function () {{ say('9장 저장했습니다.'); }})
+      .then(function () {{ if (!stopped) say(total + '장 모두 저장했습니다.'); }})
       .catch(fail)
       .then(function () {{ btn.disabled = false; }});
   }});

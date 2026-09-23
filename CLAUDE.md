@@ -39,12 +39,11 @@
 
 인스타그램 카드 캐러셀 소스.
 
-- `cards/project/canvas.json` — 캔버스 인덱스 (아트보드 배치)
-- `cards/project/*.dc.html` — 카드 1장 = 파일 1개 (1080×1350, 4:5)
-- `cards/caption.md` — 업로드 캡션, 커버 문구 대안, 첫 댓글
+- `cards/export.html` — **실제로 쓰는 결과물.** 카드 미리보기 + 9장 한번에 저장(ZIP 아님, 카드마다 개별 저장을 순서대로 진행) + 캡션 복사 페이지
+- `cards/build_page.py` — 위 export.html을 빌드하는 스크립트. 카드 내용을 고치면 이 파일을 고치고 `python3 cards/build_page.py`로 다시 빌드해서 export.html에 반영한다
+- `cards/caption.md` — 업로드 캡션, 커버 문구 대안, 첫 댓글 (build_page.py가 이 파일을 읽어 export.html에 넣는다)
 - `cards/assets/*.png` — 카드에 들어간 제품 컷
-- `cards/export.html` — 카드 미리보기 + ZIP 일괄 다운로드 + 캡션 복사 페이지
-- `cards/build_page.py` — 위 export.html을 빌드하는 스크립트. 카드 마크업을 캔버스(.dc.html)와 export 양쪽에 반영하려면 **두 곳 다** 고치고 `python3 cards/build_page.py`로 다시 빌드한다
+- `cards/project/*.dc.html`, `cards/project/canvas.json` — 캔버스 아티팩트 소스. **2026-09-23부로 캔버스는 더 안 씀** (사용자가 export.html 하나면 충분하다고 확인). 새 카드 작업은 `build_page.py`만 고치면 되고, 이 폴더는 굳이 같이 갱신하지 않아도 된다. 캔버스가 다시 필요해지면 그때 두 곳을 맞추면 된다.
 
 ### 콘텐츠 규칙
 
