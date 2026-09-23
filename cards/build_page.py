@@ -67,25 +67,28 @@ CARDS = [
 </div>
 <div class="stack-22">
   {row('컬러', '솔라 터보 / 코어 블랙 / 루시드 레드')}
-  {row('어퍼', '셀러메쉬 3.0', '형광 핑크 바탕에 도트 패턴 3스트라이프')}
+  {row('어퍼', '아디제로 라이트락 2.0', '형광 핑크 바탕에 도트 패턴 3스트라이프')}
   {row('품번', 'KI8294')}
 </div>
 {foot('첫 컬러웨이 기준 · 추가 컬러는 순차 공개')}'''),
 
     ('스펙', f'''{head(4)}
-<h2 class="c-title">스펙</h2>
+<div class="stack-12">
+  <span class="over">해외 판매처 스펙 기준 · adidas 공식 발표 전</span>
+  <h2 class="c-title">스펙</h2>
+</div>
 <div class="tiles">
-  <div class="tile"><span class="lbl">힐 스택</span><span class="stat">39.5<span class="unit"> mm</span></span></div>
-  <div class="tile"><span class="lbl">포어풋 스택</span><span class="stat">33<span class="unit"> mm</span></span></div>
-  <div class="tile"><span class="lbl">드롭</span><span class="stat">6.5<span class="unit"> mm</span></span></div>
-  <div class="tile"><span class="lbl">무게</span><span class="stat">약 230<span class="unit"> g</span></span></div>
+  <div class="tile"><span class="lbl">힐 스택</span><span class="stat">39<span class="unit"> mm</span></span></div>
+  <div class="tile"><span class="lbl">포어풋 스택</span><span class="stat">35<span class="unit"> mm</span></span></div>
+  <div class="tile"><span class="lbl">드롭</span><span class="stat">4<span class="unit"> mm</span></span></div>
+  <div class="tile"><span class="lbl">무게</span><span class="stat">175&ndash;189<span class="unit"> g</span></span></div>
 </div>
 <div class="grow stack-20">
   {row('미드솔', '라이트스트라이크 프로 2중 레이어')}
-  {row('플레이트', '카본 에너지로드 2.0', '통판이 아니라 발가락뼈 모양 카본 막대 5개')}
-  {row('아웃솔', '컨티넨탈')}
+  {row('구조', '카본 에너지림 (신규)', '프로4의 막대형 에너지로드에서 테두리형 구조로 전면 교체')}
+  {row('아웃솔', '라이트트랙션 · 컨티넨탈 고무')}
 </div>
-{foot('공개 수치 기준 · 실측은 사이즈마다 다릅니다')}'''),
+{foot('해외 판매처(AU·CA) 원문 대조 · adidas 공식 발표는 아직 없습니다')}'''),
 
     ('달라진 점', f'''{head(5)}
 <div class="stack-12">
@@ -93,12 +96,12 @@ CARDS = [
   <h2 class="c-title">뭐가 달라졌나</h2>
 </div>
 <div class="grow stack-26">
-  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">미드솔 구조가 바뀌었습니다</span><span class="body-s">라이트스트라이크 프로를 2중 레이어로 쌓아 반발을 다시 배치했습니다.</span></span></div>
-  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">안정성을 보강했습니다</span><span class="body-s">후반부에 흔들리던 착지를 잡는 쪽으로 손봤다는 게 핵심입니다.</span></span></div>
-  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">내구성이 좋아졌습니다</span><span class="body-s">레이스 한두 번 쓰고 버리는 신발이라는 지적을 의식한 변화로 보입니다.</span></span></div>
-  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">무게는 그대로입니다</span><span class="body-s">230g 안팎, 레이싱화 경량 기조는 유지했습니다.</span></span></div>
+  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">카본 구조가 로드에서 림으로 바뀌었습니다</span><span class="body-s">발가락뼈 모양 막대(에너지로드) 대신, 발 둘레를 도는 테두리형 카본(에너지림)으로 전면 교체됐습니다. 부분 변경이 아니라 시스템 자체가 바뀐 겁니다.</span></span></div>
+  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">드롭이 낮아졌습니다</span><span class="body-s">드롭 6mm → 4mm, 포어풋 스택 33mm → 35mm. 힐과 포어풋 차이가 줄어 더 평평하게 지면을 딛는 구조입니다.</span></span></div>
+  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">무게는 오히려 가벼워졌습니다</span><span class="body-s">해외 판매처 스펙 기준 200g 안쪽대로, 늘지 않고 줄었습니다. 판매처마다 표기 g수는 조금씩 다릅니다.</span></span></div>
+  <div class="row bullet"><span class="dot"></span><span class="col"><span class="head-s">어퍼·아웃솔도 새 버전입니다</span><span class="body-s">라이트락 2.0 어퍼, 라이트트랙션 아웃솔(컨티넨탈 고무)로 각각 업데이트됐습니다.</span></span></div>
 </div>
-<div class="quote"><p>솔직히 스펙표만 보면 드라마틱한 세대교체는 아닙니다. 체감은 신어봐야 압니다.</p></div>
+<div class="quote"><p>막대에서 테두리로, 카본 구조 자체가 바뀐 건 생각보다 큰 변화입니다. 체감은 신어봐야 압니다.</p></div>
 {foot('착용기는 확보되는 대로 올리겠습니다')}'''),
 
     ('가격·출시일', f'''{head(6)}
@@ -139,7 +142,7 @@ CARDS = [
   <p class="cta">저장해두고 발매일에 다시 꺼내 보세요.<br>국내 발매 정보 뜨면 여기에 바로 올리겠습니다.</p>
   <div class="handle-row"><span class="handle-pill">@runjuho</span><span class="eyebrow">러닝 장비 소식은 여기서</span></div>
 </div>
-<div class="src"><p>출처 · 세계육상연맹(World Athletics) 공인 신발 리스트, 해외 리테일러 공개 발매 정보 기준.<br>국내 공식 발표 내용과 다를 수 있습니다.</p></div>'''),
+<div class="src"><p>출처 · 세계육상연맹(World Athletics) 공인 리스트, 해외 판매처(AU·CA) 제품 페이지 원문 대조.<br>adidas 공식 스펙 발표가 아직 없어 판매처 간 표기 차이(특히 무게)가 있을 수 있습니다.</p></div>'''),
 ]
 
 slots = '\n'.join(
